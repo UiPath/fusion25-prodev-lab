@@ -1,0 +1,29 @@
+Procurement Policy
+===================
+
+1. General Procurement Rules
+-----------------------------
+- Purchases under $10,000: Approval can be granted directly by the manager.
+- Purchases of $10,000 or more: Must go through the Coupa system.
+- All procurement requests must include a clear justification for the purchase, outlining necessity and expected benefits to the company.
+
+2. Equipment Acquisition
+-------------------------
+- The following standard equipment does not require approval and can be requested by emailing eusebiu.jecan@uipath.com:
+  * Dell XPS 13 Laptop
+  * MacBook Pro 14"
+  * Lenovo ThinkPad X1 Carbon
+  * Logitech MX Master 3 Mouse
+  * Apple Magic Mouse
+  * Jabra Evolve2 65 Headphones
+  * Sony WH-1000XM5 Headphones
+
+- Laptop replacement eligibility:
+  * A laptop must be at least 3 years old to qualify for replacement without additional approval.
+  * Previous usage of the device counts toward the 3-year period.
+
+- Non-standard laptops:
+  * Within $2,000 budget, MacBooks or MacOS laptops do not require approval.
+
+- Sustainability considerations:
+  * Prioritize energy-efficient and environmentally friendly equipment in all procurement decisions.

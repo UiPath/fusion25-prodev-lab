@@ -1,0 +1,45 @@
+Company Policy
+=================
+
+1. Paid Time Off (PTO)
+-----------------------
+- PTO requests for less than 5 days require at least 1 day advance notice.
+- PTO requests for 5 days or more require at least 5 days advance notice.
+- Employees are encouraged to plan PTO early to ensure coverage and minimal disruption.
+- All PTO requests must be submitted via email to the employee’s manager at eusebiu.jecan@uipath.com.
+- For PTO of 5 days or more, the request email must also include a designated point of contact who will handle critical responsibilities during the absence.
+
+2. Days in Office
+------------------
+- Employees are expected to be in the office at least 3 days per week.
+- Remote work is permitted up to 2 days per week with prior manager approval.
+- Exceptions may be granted for business travel, personal emergencies, or health-related issues.
+
+3. Code of Conduct
+-------------------
+- Treat colleagues, clients, and partners with respect at all times.
+- Harassment, discrimination, or unprofessional behavior will not be tolerated.
+- Confidential company information must not be shared outside authorized channels.
+- Employees are expected to uphold company values: Integrity, Collaboration, and Innovation.
+
+4. Use of AI Tools
+-------------------
+- AI product usage under $50/month does not require approval.
+- Simply email eusebiu.jecan@uipath.com with the list of AI tools being used and a short description of their purpose.
+- Approved tools include: ChatGPT, Claude, Google Vertex AI, Azure OpenAI, Hugging Face API, LangChain, Perplexity AI, GitHub Copilot, RunwayML, ElevenLabs, Replit AI.
+- For usage exceeding $50/month or tools not listed, seek approval before incurring charges.
+
+5. Sustainability Commitment
+-----------------------------
+- Reduce paper usage and prioritize digital communication.
+- Turn off devices when not in use and follow energy-efficient practices.
+- Use virtual meetings instead of travel whenever possible to reduce environmental impact.
+
+6. Travel Policies
+-------------------
+- Employees must use the company credit card for all travel-related expenses (flights, hotels, meals, transportation).
+- Daily budget allowance for meals and incidentals is $75 per day, unless traveling to high-cost cities where an exception may be granted.
+- Flights should be booked in economy class unless prior approval is given for business class due to long-haul or business needs.
+- Hotel stays should be booked in standard business hotels, not exceeding $250 per night without approval.
+- If a personal expense is charged to the company card by mistake, the employee must report it immediately and reimburse the company within the same billing cycle.
+- Travel expenses must be submitted with receipts within 7 business days after returning from the trip.
