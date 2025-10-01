@@ -1,0 +1,48 @@
+{
+    "entryPoints": [
+        {
+            "filePath": "agent",
+            "uniqueId": "aa4ca881-e0a5-4aef-8174-a98361ba5462",
+            "type": "agent",
+            "input": {
+                "type": "object",
+                "properties": {
+                    "question": {
+                        "title": "Question",
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "human_feedback": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "question"
+                ]
+            },
+            "output": {
+                "type": "object",
+                "properties": {
+                    "response": {
+                        "default": null,
+                        "title": "Response",
+                        "type": "string"
+                    }
+                },
+                "required": []
+            }
+        }
+    ],
+    "bindings": {
+        "version": "2.0",
+        "resources": []
+    }
+}

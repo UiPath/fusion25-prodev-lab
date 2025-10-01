@@ -1,0 +1,30 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	supervisor(supervisor)
+	policy(policy)
+	verify_credentials(verify_credentials)
+	procurement(procurement)
+	hr(hr)
+	permission_check_local_DB(permission_check_local_DB)
+	route_by_category(route_by_category)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> supervisor;
+	permission_check_local_DB --> hr;
+	route_by_category -. &nbsp;hr&nbsp; .-> permission_check_local_DB;
+	route_by_category -.-> policy;
+	route_by_category -. &nbsp;procurement&nbsp; .-> verify_credentials;
+	supervisor -. &nbsp;next_node&nbsp; .-> route_by_category;
+	verify_credentials -. &nbsp;end&nbsp; .-> __end__;
+	verify_credentials -.-> procurement;
+	hr --> __end__;
+	policy --> __end__;
+	procurement --> __end__;
+	supervisor -.-> supervisor;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
