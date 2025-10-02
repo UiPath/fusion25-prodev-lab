@@ -35,7 +35,7 @@ Using `uv run` means you don’t have to activate the venv:
 
 ```bash
 # Log in and write credentials to .env
-uv run uipath auth
+uv run uipath auth --staging
 
 # Initialize (scans entrypoints and updates uipath.json)
 uv run uipath init
