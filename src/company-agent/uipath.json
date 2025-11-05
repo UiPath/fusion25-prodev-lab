@@ -2,7 +2,7 @@
     "entryPoints": [
         {
             "filePath": "agent",
-            "uniqueId": "aa4ca881-e0a5-4aef-8174-a98361ba5462",
+            "uniqueId": "9fd17802-48bf-47b9-a809-c612a9e1be8e",
             "type": "agent",
             "input": {
                 "type": "object",

@@ -1,0 +1,9 @@
+{
+  "id": "5b1b72bd-c5ee-4ee7-b2b8-4347f42b0a71",
+  "name": "JsonSimilarityEvaluator (auto-generated)",
+  "version": "1.0",
+  "evaluatorTypeId": "uipath-json-similarity",
+  "evaluatorConfig": {
+    "name": "JsonSimilarityEvaluator"
+  }
+}

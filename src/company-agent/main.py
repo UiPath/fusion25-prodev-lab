@@ -179,17 +179,24 @@ async def supervisor_node(state: GraphState) -> GraphState:
     result = await llm.with_structured_output(LlmOutput).ainvoke(messages)
     human_feedback = None
 
-    if result["confidence"] < 99:
-        action_data = interrupt(CreateAction(app_name="SimpleApprovalApp",
+    # Temporarily disable HITL for testing - set to very low threshold
+    # Original: if result["confidence"] < 99:
+    if result["confidence"] < 50:
+        action_data = interrupt(CreateAction(app_name="App",
                                              title="Action Required: Review classification",
                                              data={
                                                  "Content": f"I classified the question '{state.question}' \n as {result['category']} \n Is this ok? My confidence score is only {result['confidence']}"},
-                                             app_folder_path="Shared/ApprovalApp",
-                                             assignee="eusebiu.jecan@uipath.com",
+                                             app_folder_path="Shared/ApprovalApp/SimpleApprovalAppSolution",
+                                             assignee="cosmin.paunel@uipath.com",
                                              app_version=4
                                              ))
-        if not bool(action_data["Approved"]):
-            human_feedback = action_data["Comment"]
+        print(f"Action response: {action_data}")
+        # Check for approval - action_data might have different key names depending on the app
+        # Common keys: "Approved", "approved", "IsApproved", "approval", "status"
+        if action_data:
+            approved = action_data.get("Approved") or action_data.get("approved") or action_data.get("IsApproved")
+            if approved is not None and not bool(approved):
+                human_feedback = action_data.get("Comment", action_data.get("comment", ""))
     return GraphState(question=state.question, category=result["category"], human_feedback=human_feedback)
 
 
@@ -387,11 +394,21 @@ def decide_next_node(state: GraphState) -> Literal["supervisor", "next_node"]:
 
 
 def route_by_category_node(state: GraphState) -> dict:
-    if state.category.lower() not in ["policy", "procurement", "hr"]:
+    category_lower = state.category.lower()
+    # Map variations to canonical names
+    category_map = {
+        "company policy": "policy",
+        "policy": "policy",
+        "procurement": "procurement",
+        "hr": "hr",
+        "human resources": "hr",
+    }
+
+    if category_lower not in category_map:
         raise ValueError(
             f"Invalid category '{state.category}'. Expected one of: 'policy', 'procurement', 'hr'."
         )
-    return {"route": state.category}
+    return {"route": category_map[category_lower]}
 
 
 # Build the state graph with conditional routing

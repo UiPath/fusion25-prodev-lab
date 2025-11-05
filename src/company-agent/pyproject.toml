@@ -1,13 +1,28 @@
 [project]
-name = "agent-JohnDoe"
-version = "0.0.3"
-description = "agent-JohnDoe"
-authors = [{ name = "John Doe", email = "john.doe@myemail.com" }]
+name = "company-agent"
+version = "0.1.0"
+description = "Company policy agent with supervisor routing and node-level evaluation support"
+authors = [{ name = "UiPath", email = "support@uipath.com" }]
 dependencies = [
-    "uipath-langchain>=0.0.106",
-    "langchain-anthropic>=0.3.8",
-    "ipykernel>=6.30.1",
-    "jupyter>=1.1.1",
+    "uipath",
+    "uipath-langchain",
+    "langchain-core>=0.3.33",
     "langchain-openai>=0.3.33",
+    "langchain-anthropic>=0.3.8",
+    "langgraph>=0.2.62",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "httpx>=0.27.0",
 ]
 requires-python = ">=3.10"
+
+[tool.uv.sources]
+uipath = { path = "../../../uipath-python", editable = true }
+uipath-langchain = { path = "../../../uipath-langchain-python", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,10 @@
+{
+  "id": "78d30229-9e34-4c10-afc1-89c6e0c73026",
+  "name": "LLMJudgeTrajectoryEvaluator (auto-generated)",
+  "version": "1.0",
+  "evaluatorTypeId": "uipath-llm-judge-trajectory",
+  "evaluatorConfig": {
+    "name": "LLMJudgeTrajectoryEvaluator",
+    "model": "anthropic.claude-3-5-sonnet-20240620-v1:0"
+  }
+}

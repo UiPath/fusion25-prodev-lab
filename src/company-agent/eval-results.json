@@ -1,0 +1,80 @@
+{
+  "evaluationSetName": "Evaluation set generated from agent",
+  "evaluationSetResults": [
+    {
+      "evaluationName": "Node: supervisor",
+      "evaluationRunResults": [
+        {
+          "evaluatorName": "LLMJudgeOutputEvaluator",
+          "evaluatorId": "dcda879f-e0a0-4117-9958-066052d808b8",
+          "result": {
+            "score": 0.3,
+            "details": "The semantic similarity between the expected and actual outputs is relatively low. While both relate to adding a prospect to a CRM, the actual output provides a much more detailed response that goes beyond the scope of the expected output. The actual output includes policy evidence, conditions/exceptions, and next steps, which are not present in the expected output. The category 'Procurement' in the expected output is not directly addressed in the actual output, though it mentions 'procurement objectives'. The actual output does not include fields for 'human_feedback', 'email', or 'code' as in the expected output. The question field in the expected output is somewhat reflected in the actual output's content, but not as a distinct field. The overall structure and content of the two outputs are significantly different, with the actual output providing a more comprehensive response that doesn't match the simple key-value pair format of the expected output.",
+            "evaluationTime": 5.666610956192017
+          }
+        }
+      ],
+      "agentExecutionOutput": null
+    },
+    {
+      "evaluationName": "Node: route_by_category",
+      "evaluationRunResults": [
+        {
+          "evaluatorName": "LLMJudgeOutputEvaluator",
+          "evaluatorId": "dcda879f-e0a0-4117-9958-066052d808b8",
+          "result": {
+            "score": 0.0,
+            "details": "The expected output 'procurement' and the actual output are completely different in content and structure. The actual output is a detailed response about adding a prospect to a CRM system, including policy evidence, conditions, and next steps. This bears no semantic similarity to the single word 'procurement'. There is no overlap in meaning, context, or subject matter between the two outputs.",
+            "evaluationTime": 3.146423101425171
+          }
+        }
+      ],
+      "agentExecutionOutput": null
+    },
+    {
+      "evaluationName": "Node: verify_credentials",
+      "evaluationRunResults": [
+        {
+          "evaluatorName": "LLMJudgeOutputEvaluator",
+          "evaluatorId": "dcda879f-e0a0-4117-9958-066052d808b8",
+          "result": {
+            "score": 0.15,
+            "details": "The semantic similarity between the expected and actual outputs is quite low. While both contain JSON structures, the content and purpose differ significantly. The expected output appears to be contact information for a new prospect, including fields like 'question', 'category', 'email', and 'code'. In contrast, the actual output is a structured response to the question of adding a new prospect to a CRM, including policy evidence, conditions, and next steps. The only common element is the general context of adding a new contact to a CRM system. The actual output provides more detailed information about the process but lacks the specific contact details present in the expected output. This substantial difference in content and structure results in a very low similarity score.",
+            "evaluationTime": 4.792879104614258
+          }
+        }
+      ],
+      "agentExecutionOutput": null
+    },
+    {
+      "evaluationName": "Node: procurement",
+      "evaluationRunResults": [
+        {
+          "evaluatorName": "LLMJudgeOutputEvaluator",
+          "evaluatorId": "dcda879f-e0a0-4117-9958-066052d808b8",
+          "result": {
+            "score": 0.85,
+            "details": "The two responses show a high degree of semantic similarity, with many matching key points and overall structure. Both correctly state that a new prospect can be added to the CRM, subject to company policies. They both cite the same policy evidence from Section 2.1 of the CRM Data Entry Policy. Both mention the need for verification and relevance to business objectives. However, there are some differences: The expected output emphasizes privacy policies and consent, which are not mentioned in the actual output. The actual output focuses more on data completeness. The expected output provides more specific next steps, including obtaining consent, while the actual output is more general. The 'If not covered' sections differ slightly in their focus, with the expected output mentioning the CRM system specifically, while the actual output refers to procurement procedures. These differences, while not drastically altering the overall meaning, do represent some loss of specific important details, particularly regarding privacy and consent.",
+            "evaluationTime": 6.30533504486084
+          }
+        }
+      ],
+      "agentExecutionOutput": null
+    },
+    {
+      "evaluationName": "Final Output",
+      "evaluationRunResults": [
+        {
+          "evaluatorName": "LLMJudgeOutputEvaluator",
+          "evaluatorId": "dcda879f-e0a0-4117-9958-066052d808b8",
+          "result": {
+            "score": 0.95,
+            "details": "The two JSON contents show a high degree of semantic similarity, with only minor differences in wording and structure. Both provide an affirmative answer about adding a prospect to the CRM, subject to company policies. They both cite the same policy evidence, though the actual output omits 'Data Entry' from the policy name. Both mention conditions related to relevance and consent/compliance, though expressed slightly differently. The next steps are nearly identical, focusing on verifying relevance and obtaining consent. The 'If not covered' sections both mention the CRM user guide for detailed instructions, with a slight difference in specifying what's not covered. These minor variations do not significantly impact the overall meaning and context of the response.",
+            "evaluationTime": 8.93367314338684
+          }
+        }
+      ],
+      "agentExecutionOutput": null
+    }
+  ]
+}

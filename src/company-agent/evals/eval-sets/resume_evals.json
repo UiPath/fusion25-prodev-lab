@@ -1,0 +1,105 @@
+{
+  "id": "4f4ca5f9-979e-41bf-83b4-1bc98a38099c",
+  "name": "Evaluation set generated from agent",
+  "version": "1.0",
+  "evaluatorRefs": [
+    "78d30229-9e34-4c10-afc1-89c6e0c73026"
+  ],
+  "evaluations": [
+    {
+      "id": "2ddb2edd-d247-4ec4-bd9d-0e0b48e04747",
+      "name": "Node: supervisor",
+      "inputs": {
+        "question": "I met a new prospect at a conference, I need to add him to the CRM",
+        "email": "cosmin.paunel@uipath.com",
+        "code": "4827"
+      },
+      "evaluationCriterias": {
+        "78d30229-9e34-4c10-afc1-89c6e0c73026": {
+          "expected_output": {
+            "question": "I met a new prospect at a conference, I need to add him to the CRM",
+            "category": "Procurement",
+            "human_feedback": null,
+            "email": null,
+            "code": null
+          }
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'supervisor' and produce the expected output during the workflow execution.",
+      "nodeId": "supervisor"
+    },
+    {
+      "id": "806b33fe-da1b-4e84-89fa-338eac383825",
+      "name": "Node: route_by_category",
+      "inputs": {
+        "question": "I met a new prospect at a conference, I need to add him to the CRM",
+        "email": "cosmin.paunel@uipath.com",
+        "code": "4827"
+      },
+      "evaluationCriterias": {
+        "78d30229-9e34-4c10-afc1-89c6e0c73026": {
+          "expected_output": "procurement"
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'route_by_category' and produce the expected output during the workflow execution.",
+      "nodeId": "route_by_category"
+    },
+    {
+      "id": "6c858a4a-81e3-4d34-bbd7-4d5470a43fac",
+      "name": "Node: verify_credentials",
+      "inputs": {
+        "question": "I met a new prospect at a conference, I need to add him to the CRM",
+        "email": "cosmin.paunel@uipath.com",
+        "code": "4827"
+      },
+      "evaluationCriterias": {
+        "78d30229-9e34-4c10-afc1-89c6e0c73026": {
+          "expected_output": {
+            "question": "I met a new prospect at a conference, I need to add him to the CRM",
+            "category": "Procurement",
+            "human_feedback": null,
+            "email": "cosmin.paunel@uipath.com",
+            "code": "4827"
+          }
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'verify_credentials' and produce the expected output during the workflow execution.",
+      "nodeId": "verify_credentials"
+    },
+    {
+      "id": "c446cb3e-22de-4efb-8fd8-d66a964d62f4",
+      "name": "Node: procurement",
+      "inputs": {
+        "question": "I met a new prospect at a conference, I need to add him to the CRM",
+        "email": "cosmin.paunel@uipath.com",
+        "code": "4827"
+      },
+      "evaluationCriterias": {
+        "78d30229-9e34-4c10-afc1-89c6e0c73026": {
+          "expected_output": {
+            "response": "Answer:\nYou can add a new prospect to the CRM as long as it aligns with the company's data entry protocols.\n\nPolicy evidence:\n- \"All new contacts must be verified and relevant to the business objectives before being added to the CRM.\"\n  Reference: CRM Data Entry Policy, Section 2.1\n\nConditions/Exceptions:\n- The prospect's information must be complete and verified.\n\nNext steps:\n- Verify the prospect's information and relevance to procurement objectives.\n- Enter the prospect's details into the CRM following the data entry guidelines.\n\nIf not covered:\nSpecific CRM platform instructions are not covered; please refer to the CRM user manual for detailed steps."
+          }
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'procurement' and produce the expected output during the workflow execution.",
+      "nodeId": "procurement"
+    },
+    {
+      "id": "3f03e8d3-6aa4-4244-b42f-9b619f631dd5",
+      "name": "Final Output",
+      "inputs": {
+        "question": "I met a new prospect at a conference, I need to add him to the CRM",
+        "email": "cosmin.paunel@uipath.com",
+        "code": "4827"
+      },
+      "evaluationCriterias": {
+        "78d30229-9e34-4c10-afc1-89c6e0c73026": {
+          "expected_output": {
+            "response": "Answer:\nYou can add a new prospect to the CRM as long as it aligns with the company's data entry protocols.\n\nPolicy evidence:\n- \"All new contacts must be verified and relevant to the business objectives before being added to the CRM.\"\n  Reference: CRM Data Entry Policy, Section 2.1\n\nConditions/Exceptions:\n- The prospect's information must be complete and verified.\n\nNext steps:\n- Verify the prospect's information and relevance to procurement objectives.\n- Enter the prospect's details into the CRM following the data entry guidelines.\n\nIf not covered:\nSpecific CRM platform instructions are not covered; please refer to the CRM user manual for detailed steps."
+          }
+        }
+      },
+      "expectedAgentBehavior": "Agent should produce the expected output for the given input"
+    }
+  ]
+}

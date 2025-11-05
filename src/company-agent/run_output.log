@@ -1,0 +1,94 @@
+▶ START 
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true
+CLAUDECODE: 1
+CLAUDE_AGENT_SDK_VERSION: 0.1.30
+CLAUDE_CODE_ENABLE_TELEMETRY: 1
+CLAUDE_CODE_ENTRYPOINT: claude-vscode
+COLORFGBG: 15;0
+COLORTERM: truecolor
+COMMAND_MODE: unix2003
+COREPACK_ENABLE_AUTO_PIN: 0
+CommonPropertyBagPath: /Users/cosminpaunel/Library/Application Support/csdevkit/e84f7f22.json
+CommonPropertyBagWithConfigPath: /Users/cosminpaunel/Library/Application Support/csdevkit/0c648506ad8f1762355656604.json
+DOCKER_DEFAULT_PLATFORM: linux/amd64
+ELECTRON_NO_ATTACH_CONSOLE: 1
+ELECTRON_RUN_AS_NODE: 1
+GIT_EDITOR: true
+HOME: /Users/cosminpaunel
+HOMEBREW_CELLAR: /opt/homebrew/Cellar
+HOMEBREW_PREFIX: /opt/homebrew
+HOMEBREW_REPOSITORY: /opt/homebrew
+INFOPATH: /opt/homebrew/share/info:
+ITERM_PROFILE: Default
+ITERM_SESSION_ID: w0t0p0:812E54E1-E6F3-4EA7-B6EC-8862237C242D
+LANG: en_US.UTF-8
+LC_TERMINAL: iTerm2
+LC_TERMINAL_VERSION: 3.6.5
+LOGNAME: cosminpaunel
+MallocNanoZone: 0
+NoDefaultCurrentDirectoryInExePath: 1
+OLDPWD: /Users/cosminpaunel/work/agent-platform
+ORIGINAL_XDG_CURRENT_DESKTOP: undefined
+OTEL_EXPORTER_OTLP_ENDPOINT: http://4.227.178.168:4317
+OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE: delta
+OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+OTEL_LOGS_EXPORTER: otlp
+OTEL_LOGS_EXPORT_INTERVAL: 5000
+OTEL_METRICS_EXPORTER: otlp
+OTEL_METRIC_EXPORT_INTERVAL: 10000
+PATH: /Users/cosminpaunel/work/agent-platform/fusion25-prodev-lab/src/company-agent/.venv/bin:/usr/local/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/cosminpaunel/.dotnet:/Users/cosminpaunel/.dotnet/tools:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Applications/iTerm.app/Contents/Resources/utilities
+PWD: /Users/cosminpaunel/work/agent-platform/fusion25-prodev-lab/src/company-agent
+SHELL: /bin/zsh
+SHLVL: 3
+SSH_AUTH_SOCK: /private/tmp/com.apple.launchd.ITgFPKOo5j/Listeners
+STARSHIP_SESSION_KEY: 1766525901702423
+STARSHIP_SHELL: zsh
+TERM: xterm-256color
+TERMINFO_DIRS: /Applications/iTerm.app/Contents/Resources/terminfo:/usr/share/terminfo
+TERM_FEATURES: T3CwLrMSc7UUw9Ts3BFGsSyHNoSxF
+TERM_PROGRAM: iTerm.app
+TERM_PROGRAM_VERSION: 3.6.5
+TERM_SESSION_ID: w0t0p0:812E54E1-E6F3-4EA7-B6EC-8862237C242D
+TMPDIR: /var/folders/g7/q404dw3d00s2pchkvsmpfgk40000gn/T/
+USER: cosminpaunel
+UV: /opt/homebrew/bin/uv
+UV_RUN_RECURSION_DEPTH: 1
+VIRTUAL_ENV: /Users/cosminpaunel/work/agent-platform/fusion25-prodev-lab/src/company-agent/.venv
+VSCODE_CLI: 1
+VSCODE_CODE_CACHE_PATH: /Users/cosminpaunel/Library/Application Support/Code/CachedData/7d842fb85a0275a4a8e4d7e040d2625abbf7f084
+VSCODE_CRASH_REPORTER_PROCESS_TYPE: extensionHost
+VSCODE_CWD: /Users/cosminpaunel/work/agent-platform
+VSCODE_DOTNET_INSTALL_TOOL_ORIGINAL_HOME: /Users/cosminpaunel
+VSCODE_ESM_ENTRYPOINT: vs/workbench/api/node/extensionHostProcess
+VSCODE_HANDLES_UNCAUGHT_ERRORS: true
+VSCODE_IPC_HOOK: /Users/cosminpaunel/Library/Application Support/Code/1.10-main.sock
+VSCODE_NLS_CONFIG: {"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/Applications/Visual Studio Code.app/Contents/Resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}
+VSCODE_PID: 5815
+XPC_FLAGS: 0x0
+XPC_SERVICE_NAME: 0
+_: /opt/homebrew/bin/uv
+__CFBundleIdentifier: com.microsoft.VSCode
+__CF_USER_TEXT_ENCODING: 0x1F5:0x0:0x0
+UIPATH_ACCESS_TOKEN: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc2NzQzQTZDRDgxQzRFQjBBRkRDMkUyMDY0MEI1NEE5M0VBNjEyMzYiLCJ4NXQiOiJkblE2Yk5nY1RyQ3YzQzRnWkF0VXFUNm1FalkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FscGhhLnVpcGF0aC5jb20vaWRlbnRpdHlfIiwibmJmIjoxNzYyMzU1ODUyLCJpYXQiOjE3NjIzNTYxNTIsImV4cCI6MTc2MjM1OTc1MiwiYXVkIjpbIlByb2Nlc3NNaW5pbmciLCJPcmNoZXN0cmF0b3JBcGlVc2VyQWNjZXNzIiwiU3R1ZGlvV2ViQmFja2VuZCIsIklkZW50aXR5U2VydmVyQXBpIiwiQ29ubmVjdGlvblNlcnZpY2UiLCJEYXRhU2VydmljZSIsIkRvY3VtZW50VW5kZXJzdGFuZGluZyIsIlVpUGF0aC5Eb2N1bWVudFVuZGVyc3RhbmRpbmciLCJFbnRlcnByaXNlQ29udGV4dFNlcnZpY2UiLCJKYW1KYW1BcGkiLCJMTE1HYXRld2F5IiwiTExNT3BzIiwiT01TIiwiUmVzb3VyY2VDYXRhbG9nU2VydmljZUFwaSIsIlRlc3RNYW5hZ2VyIiwiQXV0b21hdGlvblNvbHV0aW9ucyJdLCJzY29wZSI6WyJQcm9jZXNzTWluaW5nIiwiT3JjaGVzdHJhdG9yQXBpVXNlckFjY2VzcyIsIlN0dWRpb1dlYkJhY2tlbmQiLCJJZGVudGl0eVNlcnZlckFwaSIsIkNvbm5lY3Rpb25TZXJ2aWNlIiwiRGF0YVNlcnZpY2UiLCJEb2N1bWVudFVuZGVyc3RhbmRpbmciLCJEdS5EaWdpdGl6YXRpb24uQXBpIiwiRHUuQ2xhc3NpZmljYXRpb24uQXBpIiwiRHUuRXh0cmFjdGlvbi5BcGkiLCJEdS5WYWxpZGF0aW9uLkFwaSIsIkVudGVycHJpc2VDb250ZXh0U2VydmljZSIsIkRpcmVjdG9yeSIsIkphbUphbUFwaSIsIkxMTUdhdGV3YXkiLCJMTE1PcHMiLCJPTVMiLCJSQ1MuRm9sZGVyQXV0aG9yaXphdGlvbiIsIlRNLlByb2plY3RzIiwiVE0uVGVzdENhc2VzIiwiVE0uUmVxdWlyZW1lbnRzIiwiVE0uVGVzdFNldHMiLCJBdXRvbWF0aW9uU29sdXRpb25zIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbImV4dGVybmFsIl0sInN1Yl90eXBlIjoidXNlciIsImNsaWVudF9pZCI6IjM2ZGVhNWI4LWU4YmItNDIzZC04ZTdiLWM4MDhkZjhmMWMwMCIsInN1YiI6IjAzYmNjYWEwLWJmY2YtNDJhMS1iMTFlLTBiMWMwZDFkNjk3MSIsImF1dGhfdGltZSI6MTc2MjM0MzIwNSwiaWRwIjoib2lkYyIsImVtYWlsIjoiY29zbWluLnBhdW5lbEB1aXBhdGguY29tIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJLSTNRN1BJNkVLU09OUldRSkUyUkJIQTMzT05CTEY0SyIsImF1dGgwX2NvbiI6IlVpUGF0aC1BQURWMiIsImV4dF9zdWIiOiJhdXRoMHw1ZGI4MDgwMDFkZGI2ZjBlMzU4OTAyZjgiLCJwcnRfaWQiOiJiNzAwNmIxYy0xMWMzLTRhODAtODAyZS1mZWUwZWJmOWMzNjAiLCJob3N0IjoiRmFsc2UiLCJmaXJzdF9uYW1lIjoiQ29zbWluIiwibGFzdF9uYW1lIjoiUGF1bmVsayIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJjb3NtaW4ucGF1bmVsQHVpcGF0aC5jb20iLCJuYW1lIjoiY29zbWluLnBhdW5lbEB1aXBhdGguY29tIiwiZXh0X2lkcF9pZCI6IjEiLCJleHRfaWRwX2Rpc3BfbmFtZSI6Ikdsb2JhbElkcCIsInNpZCI6IjgxNjU3MjYwQTc3MkJCNjcwMDVEQkQxMUU4NEU0QTk1In0.M10FHHa0ND7z-RgUpoDo7GFYqVeef-qRkeERas_BBLZyGX1tbx8OR_Hmj3wy7UoJtzVhzWAwN5hNC2RDjm_eydyPY7Oo6NrOzNUBw3i71CQzkOQvTn16wZ7E2X1WiNohNz6XOqOlMKAz84tDn89HAtWnH1BbaHfC3m01yYV0TekRTEe5mYbfp9EH5sggBF_WmziF7VbiAQt3Du6XtuFjP9OJ3IFpMmeMGv8NaZ9xfYs6D3hRyGHBIKCsAJ6qbVwZEhr5jk5-882OC8dfWXD9ymLhr0_9_t0wDDLggfN7Mrom3-YFIIuuOWMx8UkkEkQfcKm7sv8qWy9CWAxvH8hijg
+UIPATH_URL: https://alpha.uipath.com/Ada/GiuliaTenant
+UIPATH_TENANT_ID: 3c05bc70-6a91-4ccd-996a-95b90d11f829
+UIPATH_ORGANIZATION_ID: b7006b1c-11c3-4a80-802e-fee0ebf9c360
+UIPATH_FOLDER_NAME: Shared
+OPENAI_API_KEY: ****
+OTEL_RESOURCE_ATTRIBUTES: service.name=uipath-sdk,service.instance.id=2.1.134
+OTEL_TRACES_EXPORTER: none
+APPLICATIONINSIGHTS_STATSBEAT_DISABLED_ALL: true
+OTEL_EXPERIMENTAL_RESOURCE_DETECTORS: azure_app_service,azure_vm
+[{'role': 'system', 'content': "Classify the user's question into one of: Company Policy, Procurement, HR. Reply with only the exact label."}, {'role': 'user', 'content': 'I met a new prospect at a conference, I need to add him to the CRM'}]
+HTTP Request: GET https://alpha.uipath.com/Ada/GiuliaTenant/agenthub_/llm/api/capabilities "HTTP/1.1 200 OK"
+HTTP Request: POST https://alpha.uipath.com/Ada/GiuliaTenant/agenthub_/llm/openai/deployments/gpt-4o-2024-08-06/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 200 OK"
+HTTP Request: GET https://alpha.uipath.com/Ada/apps_/default/api/v1/default/deployed-action-apps-schemas?search=App "HTTP/1.1 200 OK"
+HTTP Request: POST https://alpha.uipath.com/Ada/GiuliaTenant/orchestrator_/tasks/AppTasks/CreateAppTask "HTTP/1.1 201 Created"
+HTTP Request: POST https://alpha.uipath.com/Ada/GiuliaTenant/orchestrator_/odata/Tasks/UiPath.Server.Configuration.OData.AssignTasks "HTTP/1.1 200 OK"
+■ END
+output
+└── __interrupt__: (Interrupt(value=CreateAction(title='Action Required: Review 
+    classification', data={'Content': "I classified the question 'I met a new 
+    prospect at a conference, I need to add him to the CRM' \n as Procurement \n
+    Is this ok? My confidence score is onl...
+✓  Successful execution.

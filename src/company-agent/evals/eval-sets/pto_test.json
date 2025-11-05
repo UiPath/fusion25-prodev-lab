@@ -1,0 +1,91 @@
+{
+  "id": "453d57b5-7e4b-49c8-bed7-d6b6a621268f",
+  "name": "Evaluation set generated from agent",
+  "version": "1.0",
+  "evaluatorRefs": [
+    "7903b7d2-c026-4ff4-a59b-17a9484b55d2"
+  ],
+  "evaluations": [
+    {
+      "id": "dbf14c31-772b-4a4f-a6cb-562a6b404cdc",
+      "name": "Node: supervisor",
+      "inputs": {
+        "question": "How many days notice for 3 day PTO?"
+      },
+      "evaluationCriterias": {
+        "7903b7d2-c026-4ff4-a59b-17a9484b55d2": {
+          "expected_output": {
+            "question": "How many days notice for 3 day PTO?",
+            "category": "HR",
+            "human_feedback": null,
+            "email": null,
+            "code": null
+          }
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'supervisor' and produce the expected output during the workflow execution.",
+      "nodeId": "supervisor"
+    },
+    {
+      "id": "d5f85d5b-fe84-4526-a63a-fb3182aba9ef",
+      "name": "Node: route_by_category",
+      "inputs": {
+        "question": "How many days notice for 3 day PTO?"
+      },
+      "evaluationCriterias": {
+        "7903b7d2-c026-4ff4-a59b-17a9484b55d2": {
+          "expected_output": "hr"
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'route_by_category' and produce the expected output during the workflow execution.",
+      "nodeId": "route_by_category"
+    },
+    {
+      "id": "29e88e61-4786-48b1-b093-d8b7c56afbc0",
+      "name": "Node: permission_check_local_DB",
+      "inputs": {
+        "question": "How many days notice for 3 day PTO?"
+      },
+      "evaluationCriterias": {
+        "7903b7d2-c026-4ff4-a59b-17a9484b55d2": {
+          "expected_output": {
+            "response": "Not authorised"
+          }
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'permission_check_local_DB' and produce the expected output during the workflow execution.",
+      "nodeId": "permission_check_local_DB"
+    },
+    {
+      "id": "a726f361-aba8-4cd8-90c8-b872aec9138c",
+      "name": "Node: hr",
+      "inputs": {
+        "question": "How many days notice for 3 day PTO?"
+      },
+      "evaluationCriterias": {
+        "7903b7d2-c026-4ff4-a59b-17a9484b55d2": {
+          "expected_output": {
+            "response": "Tool selected for the ask is: servicenow_hrsd"
+          }
+        }
+      },
+      "expectedAgentBehavior": "The agent should execute node 'hr' and produce the expected output during the workflow execution.",
+      "nodeId": "hr"
+    },
+    {
+      "id": "682e0eb5-3f94-4fec-80b8-05ded74aa33b",
+      "name": "Final Output",
+      "inputs": {
+        "question": "How many days notice for 3 day PTO?"
+      },
+      "evaluationCriterias": {
+        "7903b7d2-c026-4ff4-a59b-17a9484b55d2": {
+          "expected_output": {
+            "response": "Tool selected for the ask is: servicenow_hrsd"
+          }
+        }
+      },
+      "expectedAgentBehavior": "Agent should produce the expected output for the given input"
+    }
+  ]
+}

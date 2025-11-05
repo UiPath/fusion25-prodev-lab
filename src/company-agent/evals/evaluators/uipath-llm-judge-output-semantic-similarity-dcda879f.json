@@ -1,0 +1,10 @@
+{
+  "id": "dcda879f-e0a0-4117-9958-066052d808b8",
+  "name": "LLMJudgeOutputEvaluator (auto-generated)",
+  "version": "1.0",
+  "evaluatorTypeId": "uipath-llm-judge-output-semantic-similarity",
+  "evaluatorConfig": {
+    "name": "LLMJudgeOutputEvaluator",
+    "model": "anthropic.claude-3-5-sonnet-20240620-v1:0"
+  }
+}
