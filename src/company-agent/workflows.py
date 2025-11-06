@@ -32,6 +32,8 @@ class WorkflowPath(BaseModel):
     variant_count: int = Field(description="Number of path variants this represents")
     required_input: str = Field(default="", description="What input is needed to trigger this workflow")
     example_query: str = Field(default="", description="Example user query that would trigger this workflow")
+    recommended_evaluator: str = Field(default="", description="Best evaluator type for this workflow")
+    evaluator_rationale: str = Field(default="", description="Why this evaluator is recommended")
 
 
 # STEP 1: EXTRACT GRAPH STRUCTURE FROM CODE
@@ -173,21 +175,21 @@ def group_paths_by_base(paths: list[list[str]]) -> dict[str, list[list[str]]]:
     return groups
 
 
-# STEP 4: LLM ANALYSIS FOR INPUT REQUIREMENTS
-async def analyze_workflow_input(normalized_path: str) -> tuple[str, str]:
-    """Use LLM to determine what input triggers this workflow path.
+# STEP 4: LLM ANALYSIS FOR INPUT REQUIREMENTS AND EVALUATOR RECOMMENDATION
+async def analyze_workflow_input(normalized_path: str) -> tuple[str, str, str, str]:
+    """Use LLM to determine what input triggers this workflow path and recommend evaluator.
 
     Args:
         normalized_path: The workflow path with Kleene star notation
 
     Returns:
-        Tuple of (required_input_json, example_query)
+        Tuple of (required_input_json, example_query, recommended_evaluator, evaluator_rationale)
     """
     from uipath_langchain.chat.models import UiPathAzureChatOpenAI
 
     llm = UiPathAzureChatOpenAI()
 
-    prompt = f"""Analyze this workflow execution path and determine what input would trigger it:
+    prompt = f"""Analyze this workflow execution path and provide comprehensive testing recommendations:
 
 Workflow Path: {normalized_path}
 
@@ -200,13 +202,28 @@ The agent accepts input following this JSON schema:
     "code": "<string>"  // Optional: 4-digit code (required for procurement)
 }}
 
-Based on the workflow path nodes, determine:
+Available UiPath Evaluators:
+1. LLMJudgeTrajectoryEvaluator - Evaluates entire execution path through the graph
+2. LLMJudgeOutputEvaluator - Evaluates final output quality
+3. ExactMatchEvaluator - Checks for exact match between output and expected
+4. ContainsEvaluator - Checks if output contains expected text
+5. JsonSimilarityEvaluator - Compares JSON outputs for similarity
+6. ToolCallOrderEvaluator - Checks order of tool calls
+7. ToolCallArgsEvaluator - Evaluates tool call arguments
+8. ToolCallCountEvaluator - Counts tool calls
+9. ToolCallOutputEvaluator - Evaluates tool call outputs
+
+Based on the workflow path, determine:
 1. What input fields are needed to trigger this specific workflow
 2. Provide an example JSON input that would trigger this workflow
+3. Which evaluator(s) would be BEST for testing this workflow
+4. Why that evaluator is the best choice
 
 Respond in this exact format:
-REQUIRED_INPUT: {{JSON object showing which fields are needed and their purpose}}
+REQUIRED_INPUT: {{JSON object showing which fields are needed}}
 EXAMPLE_INPUT: {{Complete JSON example that would trigger this workflow}}
+RECOMMENDED_EVALUATOR: <evaluator name>
+EVALUATOR_RATIONALE: <1-2 sentences explaining why>
 
 Note: supervisor* means the supervisor node may loop for human-in-the-loop feedback when confidence < 50%.
 """
@@ -218,60 +235,79 @@ Note: supervisor* means the supervisor node may loop for human-in-the-loop feedb
         # Parse the response
         required_input = ""
         example_input = ""
+        recommended_evaluator = ""
+        evaluator_rationale = ""
 
         lines = response_text.split('\n')
         for i, line in enumerate(lines):
             if 'REQUIRED_INPUT:' in line:
-                # Capture everything after REQUIRED_INPUT: until EXAMPLE_INPUT
                 start_idx = i
                 required_parts = []
                 for j in range(start_idx, len(lines)):
-                    if 'EXAMPLE_INPUT:' in lines[j]:
+                    if any(keyword in lines[j] for keyword in ['EXAMPLE_INPUT:', 'RECOMMENDED_EVALUATOR:', 'EVALUATOR_RATIONALE:']):
                         break
                     required_parts.append(lines[j].replace('REQUIRED_INPUT:', '').strip())
                 required_input = ' '.join(required_parts).strip()
 
             if 'EXAMPLE_INPUT:' in line:
-                # Capture everything after EXAMPLE_INPUT
                 start_idx = i
                 example_parts = []
                 for j in range(start_idx, len(lines)):
+                    if any(keyword in lines[j] for keyword in ['RECOMMENDED_EVALUATOR:', 'EVALUATOR_RATIONALE:']):
+                        break
                     example_parts.append(lines[j].replace('EXAMPLE_INPUT:', '').strip())
                 example_input = ' '.join(example_parts).strip()
 
-        return required_input or "Analysis incomplete", example_input or "{}"
+            if 'RECOMMENDED_EVALUATOR:' in line:
+                recommended_evaluator = line.replace('RECOMMENDED_EVALUATOR:', '').strip()
+
+            if 'EVALUATOR_RATIONALE:' in line:
+                start_idx = i
+                rationale_parts = []
+                for j in range(start_idx, len(lines)):
+                    rationale_parts.append(lines[j].replace('EVALUATOR_RATIONALE:', '').strip())
+                evaluator_rationale = ' '.join(rationale_parts).strip()
+
+        return (
+            required_input or "Analysis incomplete",
+            example_input or "{}",
+            recommended_evaluator or "LLMJudgeTrajectoryEvaluator",
+            evaluator_rationale or "Default trajectory evaluator"
+        )
 
     except Exception as e:
         print(f"WARNING: LLM analysis failed for path '{normalized_path}': {e}")
         import traceback
         traceback.print_exc()
-        return "Analysis failed", "{}"
+        return "Analysis failed", "{}", "LLMJudgeTrajectoryEvaluator", "Fallback evaluator"
 
 
 async def analyze_workflows_with_llm_async(workflows: list[WorkflowPath]) -> list[WorkflowPath]:
-    """Analyze all workflows with LLM to determine input requirements (async).
+    """Analyze all workflows with LLM to determine input requirements and evaluators (async).
 
     Args:
         workflows: List of WorkflowPath objects
 
     Returns:
-        Updated list of WorkflowPath objects with input analysis
+        Updated list of WorkflowPath objects with input analysis and evaluator recommendations
     """
-    print("Analyzing workflows with LLM to determine input requirements...")
+    print("Analyzing workflows with LLM to determine input requirements and evaluators...")
 
     # Analyze each workflow
     updated_workflows = []
     for i, wf in enumerate(workflows, 1):
         print(f"  Analyzing workflow {i}/{len(workflows)}: {wf.normalized_path}")
 
-        required_input, example_query = await analyze_workflow_input(wf.normalized_path)
+        required_input, example_query, recommended_evaluator, evaluator_rationale = await analyze_workflow_input(wf.normalized_path)
 
-        # Create updated workflow with input analysis
+        # Create updated workflow with input analysis and evaluator recommendation
         updated_wf = WorkflowPath(
             normalized_path=wf.normalized_path,
             variant_count=wf.variant_count,
             required_input=required_input,
-            example_query=example_query
+            example_query=example_query,
+            recommended_evaluator=recommended_evaluator,
+            evaluator_rationale=evaluator_rationale
         )
         updated_workflows.append(updated_wf)
 
