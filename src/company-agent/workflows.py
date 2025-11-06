@@ -21,14 +21,17 @@ Usage:
 """
 import os
 import re
+import asyncio
 from collections import defaultdict
 from pydantic import BaseModel, Field
 
 # DATA MODELS
 class WorkflowPath(BaseModel):
-    """Simple workflow path representation."""
+    """Workflow path with input requirements."""
     normalized_path: str = Field(description="Path with Kleene star (*) notation")
     variant_count: int = Field(description="Number of path variants this represents")
+    required_input: str = Field(default="", description="What input is needed to trigger this workflow")
+    example_query: str = Field(default="", description="Example user query that would trigger this workflow")
 
 
 # STEP 1: EXTRACT GRAPH STRUCTURE FROM CODE
@@ -170,7 +173,125 @@ def group_paths_by_base(paths: list[list[str]]) -> dict[str, list[list[str]]]:
     return groups
 
 
-# STEP 4: EXTRACT AND NORMALIZE WORKFLOWS
+# STEP 4: LLM ANALYSIS FOR INPUT REQUIREMENTS
+async def analyze_workflow_input(normalized_path: str) -> tuple[str, str]:
+    """Use LLM to determine what input triggers this workflow path.
+
+    Args:
+        normalized_path: The workflow path with Kleene star notation
+
+    Returns:
+        Tuple of (required_input_json, example_query)
+    """
+    from uipath_langchain.chat.models import UiPathAzureChatOpenAI
+
+    llm = UiPathAzureChatOpenAI()
+
+    prompt = f"""Analyze this workflow execution path and determine what input would trigger it:
+
+Workflow Path: {normalized_path}
+
+The agent accepts input following this JSON schema:
+{{
+    "question": "<string>",  // REQUIRED: The user's question
+    "category": "<string>",  // Optional: Category hint (policy/procurement/hr)
+    "human_feedback": "<string>",  // Optional: Human feedback for supervisor
+    "email": "<string>",  // Optional: User email (required for procurement/hr)
+    "code": "<string>"  // Optional: 4-digit code (required for procurement)
+}}
+
+Based on the workflow path nodes, determine:
+1. What input fields are needed to trigger this specific workflow
+2. Provide an example JSON input that would trigger this workflow
+
+Respond in this exact format:
+REQUIRED_INPUT: {{JSON object showing which fields are needed and their purpose}}
+EXAMPLE_INPUT: {{Complete JSON example that would trigger this workflow}}
+
+Note: supervisor* means the supervisor node may loop for human-in-the-loop feedback when confidence < 50%.
+"""
+
+    try:
+        response = await llm.ainvoke(prompt)
+        response_text = response.content if hasattr(response, 'content') else str(response)
+
+        # Parse the response
+        required_input = ""
+        example_input = ""
+
+        lines = response_text.split('\n')
+        for i, line in enumerate(lines):
+            if 'REQUIRED_INPUT:' in line:
+                # Capture everything after REQUIRED_INPUT: until EXAMPLE_INPUT
+                start_idx = i
+                required_parts = []
+                for j in range(start_idx, len(lines)):
+                    if 'EXAMPLE_INPUT:' in lines[j]:
+                        break
+                    required_parts.append(lines[j].replace('REQUIRED_INPUT:', '').strip())
+                required_input = ' '.join(required_parts).strip()
+
+            if 'EXAMPLE_INPUT:' in line:
+                # Capture everything after EXAMPLE_INPUT
+                start_idx = i
+                example_parts = []
+                for j in range(start_idx, len(lines)):
+                    example_parts.append(lines[j].replace('EXAMPLE_INPUT:', '').strip())
+                example_input = ' '.join(example_parts).strip()
+
+        return required_input or "Analysis incomplete", example_input or "{}"
+
+    except Exception as e:
+        print(f"WARNING: LLM analysis failed for path '{normalized_path}': {e}")
+        import traceback
+        traceback.print_exc()
+        return "Analysis failed", "{}"
+
+
+async def analyze_workflows_with_llm_async(workflows: list[WorkflowPath]) -> list[WorkflowPath]:
+    """Analyze all workflows with LLM to determine input requirements (async).
+
+    Args:
+        workflows: List of WorkflowPath objects
+
+    Returns:
+        Updated list of WorkflowPath objects with input analysis
+    """
+    print("Analyzing workflows with LLM to determine input requirements...")
+
+    # Analyze each workflow
+    updated_workflows = []
+    for i, wf in enumerate(workflows, 1):
+        print(f"  Analyzing workflow {i}/{len(workflows)}: {wf.normalized_path}")
+
+        required_input, example_query = await analyze_workflow_input(wf.normalized_path)
+
+        # Create updated workflow with input analysis
+        updated_wf = WorkflowPath(
+            normalized_path=wf.normalized_path,
+            variant_count=wf.variant_count,
+            required_input=required_input,
+            example_query=example_query
+        )
+        updated_workflows.append(updated_wf)
+
+    print("LLM analysis complete!")
+    return updated_workflows
+
+
+def analyze_workflows_with_llm(workflows: list[WorkflowPath]) -> list[WorkflowPath]:
+    """Analyze all workflows with LLM (sync wrapper).
+
+    Args:
+        workflows: List of WorkflowPath objects
+
+    Returns:
+        Updated list of WorkflowPath objects with input analysis
+    """
+    return asyncio.run(analyze_workflows_with_llm_async(workflows))
+
+
+# STEP 5: EXTRACT AND NORMALIZE WORKFLOWS
 def extract_and_normalize_workflows(file_path: str) -> list[WorkflowPath]:
     """Complete pipeline: extract, normalize workflows.
 
@@ -226,17 +347,23 @@ if __name__ == "__main__":
     # Automatic extraction from main.py
     main_path = os.path.join(os.path.dirname(__file__), "main.py")
 
-    print(" WORKFLOW EXTRACTION")
+    print("=" * 80)
+    print("WORKFLOW EXTRACTION")
+    print("=" * 80)
     print(f"\nExtracting from: {main_path}\n")
 
     # Extract and normalize workflows
     workflows = extract_and_normalize_workflows(main_path)
+    print(f"Found {len(workflows)} workflow paths\n")
 
     # Save to files
     if len(sys.argv) > 1 and sys.argv[1] == "--save":
         print("="*80)
-        print("SAVING WORKFLOWS")
+        print("ANALYZING WITH LLM & SAVING WORKFLOWS")
         print("="*80 + "\n")
+
+        # Analyze workflows with LLM to determine input requirements
+        workflows = analyze_workflows_with_llm(workflows)
 
         output_dir = os.path.dirname(__file__)
 
